@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 
 import Navigator from "../components/layout/Navigator.jsx";
+import HomePage from "./HomePage.jsx";
+import Header from "../components/layout/Header.jsx";
+import Footer from "../components/layout/Footer.jsx";
 
 export default class LayoutPage extends React.Component {
   navigate() {
@@ -17,18 +20,9 @@ export default class LayoutPage extends React.Component {
     return (
       <div>
         <Navigator />
-        <div class="container" style={containerStyle}>
-          <div class="row">
-            <div class="col-lg-12">
-              <h1>KillerNews.net</h1>
-              <Link to="archives" class="btn btn-danger">archives</Link>
-              <Link to="settings">
-                <button class="btn btn-success">settings</button>
-              </Link>
-              <button onClick={this.navigate.bind(this)}>feature</button>
-              {this.props.children}
-            </div>
-          </div>
+        <div className="container" style={containerStyle}>
+          <Header />
+          {this.props.children}
           <Footer/>
         </div>
       </div>

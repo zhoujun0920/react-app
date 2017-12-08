@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { HashRouter as Router, Route, IndexRoute, hashHistory } from "react-router";
+import { BrowserRouter as Router, Route, IndexRoute, hashHistory, Switch } from "react-router-dom";
 
 import LayoutPage from './pages/LayoutPage.jsx';
 import HomePage from './pages/HomePage.jsx';
@@ -10,9 +10,12 @@ const app = document.getElementById('app');
 
 render((
     <Router>
-        <Route path="/" component={HomePage}>
-          <IndexRoute component={HomePage}></IndexRoute>
-          <Route path="calculator" name="calculator" component={CalculatorPage}></Route>
+      <Switch>
+        <Route path="/" component={LayoutPage}>
+            <Route component={HomePage}></Route>
         </Route>
+        <Route path="calculator" name="calculator" component={CalculatorPage}></Route>
+      </Switch>
+
     </Router>
   ), app);

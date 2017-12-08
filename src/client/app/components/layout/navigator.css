@@ -1,0 +1,9 @@
+.navigatorCollapsed {
+  width: 100%;
+  display: none;
+}
+
+.navigator {
+  width: 100%;
+  display: block;
+}

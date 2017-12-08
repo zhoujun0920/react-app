@@ -1,7 +1,9 @@
 import React from 'react'
-import { IndexLink, Link } from "react-router";
+import { Link } from "react-router-dom";
 
-class Navigator extends React.Component {
+import navigatorStyle from './navigator.css';
+
+export default class Navigator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -15,6 +17,8 @@ class Navigator extends React.Component {
   }
 
   render() {
+    const navigatorCollapsed = this.state.collapsed ? "-collapsed" : "";
+
     return (
       <nav>
         <div>
@@ -23,13 +27,13 @@ class Navigator extends React.Component {
               Collapse!
             </button>
           </div>
-          <div>
+          <div className={navigatorStyle.navigatorCollapsed}>
             <ul>
               <li>
-                <IndexLink to='/'>Home</IndexLink>
+                <Link to={'/'} onClick={this.toggleCollapse.bind(this)}>Home</Link>
               </li>
               <li>
-                <IndexLink to='calculator'>Calculator</IndexLink>
+                <Link to={'/calculator'} onClick={this.toggleCollapse.bind(this)}>Calculator</Link>
               </li>
             </ul>
           </div>
@@ -38,5 +42,3 @@ class Navigator extends React.Component {
     );
   }
 }
-
-export default Navigator
