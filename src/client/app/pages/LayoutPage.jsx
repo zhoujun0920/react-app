@@ -6,6 +6,8 @@ import HomePage from "./HomePage.jsx";
 import Header from "../components/layout/Header.jsx";
 import Footer from "../components/layout/Footer.jsx";
 
+import LayoutPageStyle from "./layoutPage.css";
+
 export default class LayoutPage extends React.Component {
   navigate() {
     this.props.history.pushState(null, "/")
@@ -13,14 +15,11 @@ export default class LayoutPage extends React.Component {
 
   render() {
     const { location } = this.props;
-    const containerStyle = {
-      marginTop: "60px"
-    };
-    console.log("layout");
+
     return (
       <div>
         <Navigator />
-        <div className="container" style={containerStyle}>
+        <div className={LayoutPageStyle.container}>
           <Header />
           {this.props.children}
           <Footer/>

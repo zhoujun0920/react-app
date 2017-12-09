@@ -17,17 +17,17 @@ export default class Navigator extends React.Component {
   }
 
   render() {
-    const navigatorCollapsed = this.state.collapsed ? "-collapsed" : "";
+    const navigatorCollapsed = this.state.collapsed ? navigatorStyle.collapsed : navigatorStyle.normal;
 
     return (
       <nav>
-        <div>
-          <div>
+        <div className={navigatorStyle.navigatorBar}>
+          <div className={navigatorStyle.collapsedButton}>
             <button onClick={this.toggleCollapse.bind(this)}>
-              Collapse!
+              Toggle navigation
             </button>
           </div>
-          <div className={navigatorStyle.navigatorCollapsed}>
+          <div className={navigatorCollapsed}>
             <ul>
               <li>
                 <Link to={'/'} onClick={this.toggleCollapse.bind(this)}>Home</Link>

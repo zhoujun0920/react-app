@@ -15,13 +15,13 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <footer>
+      <header>
         <div className="row">
           <div className="col-lg-12">
             <p>Header!</p>
           </div>
         </div>
-      </footer>
+      </header>
     );
   }
 }

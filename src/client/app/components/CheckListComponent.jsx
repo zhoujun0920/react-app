@@ -18,7 +18,7 @@ class CheckListComponent extends React.Component {
           <input type="text"
             className={checkListStyle.checklist}
             placeholder="Type then hit Enter to add a task" />
-        </div>
+      </div>
       )
     }
   }

@@ -1,9 +1,24 @@
-.navigatorCollapsed {
+.collapsed {
   width: 100%;
   display: none;
+  padding:10px;
+  margin-left: 85%;
 }
 
-.navigator {
+.normal {
   width: 100%;
   display: block;
+  padding:10px;
+  margin-left: 85%;
+}
+
+.navigatorBar {
+  width: 100%;
+  background-color: #92a8d1;
+
+}
+
+.collapsedButton {
+  padding:10px;
+  margin-left: 90%;
 }
