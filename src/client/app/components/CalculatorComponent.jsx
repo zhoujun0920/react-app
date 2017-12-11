@@ -4,24 +4,22 @@ import NumberKeyComponent from './NumberKeyComponent.jsx';
 import ResultComponent from './ResultComponent.jsx';
 import CalculatorComponentStyle from './calculatorComponent.css';
 
+import * as CalculatorActions from "../actions/CalculatorActions.jsx";
+
 class CalculatorComponent extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleNumberInput(i) {
-
-  }
-
   renderKeyComponent(i) {
     return (
-      <NumberKeyComponent charactor={i} isEqual={false}></NumberKeyComponent>
+      <NumberKeyComponent charactor={i} isEqual={false} onClick={this.getInput(i).bind(this)}></NumberKeyComponent>
     );
   }
 
   renderEqualComponent(i) {
     return (
-      <NumberKeyComponent charactor={i} isEqual={true}></NumberKeyComponent>
+      <NumberKeyComponent charactor={i} isEqual={true} onClick={this.calculateResult.bind(this)}></NumberKeyComponent>
     );
   }
 
@@ -64,8 +62,16 @@ class CalculatorComponent extends React.Component {
 
   renderResultPanel() {
     return (
-      <ResultComponent />
+      <ResultComponent result={this.props.calculatorData}/>
     );
+  }
+
+  getInput(i) {
+    CalculatorActions.receiveInput(i)
+  }
+
+  calculateResult() {
+    CalculatorActions.calculateResult(i, this.props.calculatorData.todo);
   }
 
   render() {

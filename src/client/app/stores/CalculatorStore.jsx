@@ -1,68 +1,95 @@
 import { EventEmitter } from "events";
 
-import dispatcher from "../dispatcher";
+import dispatcher from "../../dispatcher.jsx";
 
 class CalculatorStore extends EventEmitter {
   constructor() {
     super()
-    this.results = {
-      finalResult = 0,
-      currentInput = 0,
+    this.state = {
+      finalResult: 0,
+      currentInput: 0,
+      todo: '',
+      isCalculated: false,
     }
   }
 
+  getResult() {
+    return this.state;
+  }
+
   resetCalculator() {
-    this.results = {
-      finalResult = 0,
-      currentInput = 0,
+    this.state = {
+      finalResult:0,
+      currentInput: 0,
+      todo: '',
+      isCalculated: false
     };
 
     this.emit("change");
   }
 
-  receiveInput(input, todo) {
+  calculateResult(input, todo) {
     switch(todo) {
-      case "add": {
+      case "+": {
         this.setState({
-          finalResult = finalResult + input,
-          currentInput = input
+          finalResult: finalResult + input,
+          isCalculated: true
         });
         break;
       }
-      case "minus": {
+      case "-": {
         this.setState({
-          finalResult = finalResult - input,
-          currentInput = input
+          finalResult: finalResult - input,
+          isCalculated: true
         });
         break;
       }
-      case "times": {
+      case "x": {
         this.setState({
-          finalResult = finalResult * input,
-          currentInput = input
+          finalResult: finalResult * input,
+          isCalculated: true
         });
         break;
       }
-      case "divide": {
+      case "÷": {
         this.setState({
-          finalResult = finalResult / input,
-          currentInput = input
+          finalResult: finalResult / input,
+          isCalculated: true
         });
         break;
       }
     }
+  }
 
+  receiveInput(input) {
+    if (input == '+' || input == '-' || input == 'x' || input == '÷') {
+      this.setState({
+        todo: input,
+        isCalculated: false
+      })
+    } else {
+      this.setState({
+        currentInput: input,
+        isCalculated: false
+      })
+    }
   }
 
   handleActions(action) {
     switch(action.type) {
       case "RESET_CALCULATOR": {
         this.resetCalculator();
+        this.emit("change");
         break;
       }
       case "RECEIVE_INPUT": {
-        this.receiveInput(action.input, action.todo)
+        this.receiveInput(action.input)
         this.emit("change");
+        break;
+      }
+      case "CALCULATE_RESULT": {
+        this.receiveInput(action.input, action.todo)
+        this.emit("change")
         break;
       }
     }

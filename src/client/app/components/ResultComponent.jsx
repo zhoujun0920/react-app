@@ -10,10 +10,18 @@ class ResultComponent extends React.Component {
     }
   }
 
+  disPlayResult() {
+    if (this.props.calculatorData.isCalculated) {
+      return this.props.calculatorData.finalResult;
+    } else {
+      return this.props.calculatorData.currentInput;
+    }
+  }
+
   render() {
     return (
       <div>
-        <p className={ResultComponentStyle.resultBox}>{this.state.result}</p>
+        <p className={ResultComponentStyle.resultBox}>{this.disPlayResult()}</p>
       </div>
     );
   }
