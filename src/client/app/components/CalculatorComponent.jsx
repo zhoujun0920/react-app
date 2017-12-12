@@ -22,6 +22,7 @@ class CalculatorComponent extends React.Component {
   }
 
   renderNumberPanel() {
+    const { result } = this.props;
     return (
       <div className={CalculatorComponentStyle.box}>
         {this.renderResultPanel()}
@@ -61,8 +62,9 @@ class CalculatorComponent extends React.Component {
   }
 
   renderResultPanel() {
+    const { result } = this.props;
     return (
-      <ResultComponent result={this.props}/>
+      <ResultComponent result={result}/>
     );
   }
 

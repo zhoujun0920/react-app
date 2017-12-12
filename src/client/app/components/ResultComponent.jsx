@@ -5,17 +5,14 @@ import ResultComponentStyle from './resultComponent.css'
 class ResultComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
   }
 
   disPlayResult() {
     const { result } = this.props;
-    if (result.result.isCalculated) {
-      return result.result.finalResult;
+    if (result.isCalculated) {
+      return result.finalResult;
     } else {
-      return result.result.currentInput;
+      return result.currentInput;
     }
   }
 
