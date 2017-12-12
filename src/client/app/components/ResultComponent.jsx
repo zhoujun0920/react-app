@@ -6,15 +6,16 @@ class ResultComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: 0
+
     }
   }
 
   disPlayResult() {
-    if (this.props.calculatorData.isCalculated) {
-      return this.props.calculatorData.finalResult;
+    const { result } = this.props;
+    if (result.result.isCalculated) {
+      return result.result.finalResult;
     } else {
-      return this.props.calculatorData.currentInput;
+      return result.result.currentInput;
     }
   }
 

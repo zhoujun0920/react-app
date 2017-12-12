@@ -1,12 +1,12 @@
 import React from 'react'
 
 import CalculatorComponent from '../components/CalculatorComponent.jsx';
-import * as CalculatorActions from "../actions/CalculatorActions.jsx";
 import CalculatorStore from "../stores/CalculatorStore.jsx";
 
 export default class CalculatorPage extends React.Component {
   constructor(props) {
     super(props);
+    this.getResults = this.getResults.bind(this);
     this.state = {
       hasError: false,
       calculatorData: CalculatorStore.getResult(),
@@ -14,28 +14,24 @@ export default class CalculatorPage extends React.Component {
   }
 
   componentWillMount() {
-    CalculatorStore.on("change", this.getResult);
+    CalculatorStore.on("change", this.getResults);
   }
 
   componentWillUnmount() {
-    CalculatorStore.removeListener("change", this.getResult);
+    CalculatorStore.removeListener("change", this.getResults);
   }
 
   componentDidCatch(error, info) {
       // Display fallback UI
       this.setState({ hasError: true });
       // You can also log the error to an error reporting service
-      logErrorToMyService(error, info);
+      console.log(error);
   }
 
-  getResult() {
+  getResults() {
     this.setState({
       calculatorData: CalculatorStore.getResult()
     });
-  }
-
-  resetCalculator() {
-    CalculatorActions.resetCalculator();
   }
 
   render() {

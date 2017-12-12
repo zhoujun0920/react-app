@@ -4,8 +4,6 @@ import NumberKeyComponent from './NumberKeyComponent.jsx';
 import ResultComponent from './ResultComponent.jsx';
 import CalculatorComponentStyle from './calculatorComponent.css';
 
-import * as CalculatorActions from "../actions/CalculatorActions.jsx";
-
 class CalculatorComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -13,13 +11,13 @@ class CalculatorComponent extends React.Component {
 
   renderKeyComponent(i) {
     return (
-      <NumberKeyComponent charactor={i} isEqual={false} onClick={this.getInput(i).bind(this)}></NumberKeyComponent>
+      <NumberKeyComponent charactor={i} isEqual={false}></NumberKeyComponent>
     );
   }
 
   renderEqualComponent(i) {
     return (
-      <NumberKeyComponent charactor={i} isEqual={true} onClick={this.calculateResult.bind(this)}></NumberKeyComponent>
+      <NumberKeyComponent charactor={i} isEqual={true}></NumberKeyComponent>
     );
   }
 
@@ -28,7 +26,9 @@ class CalculatorComponent extends React.Component {
       <div className={CalculatorComponentStyle.box}>
         {this.renderResultPanel()}
         <div className={CalculatorComponentStyle.row}>
-          {this.renderKeyComponent('AC')}
+          {
+            this.renderKeyComponent('AC')
+          }
           {this.renderKeyComponent('+/-')}
           {this.renderKeyComponent('%')}
           {this.renderKeyComponent('÷')}
@@ -62,16 +62,8 @@ class CalculatorComponent extends React.Component {
 
   renderResultPanel() {
     return (
-      <ResultComponent result={this.props.calculatorData}/>
+      <ResultComponent result={this.props}/>
     );
-  }
-
-  getInput(i) {
-    CalculatorActions.receiveInput(i)
-  }
-
-  calculateResult() {
-    CalculatorActions.calculateResult(i, this.props.calculatorData.todo);
   }
 
   render() {

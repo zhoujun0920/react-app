@@ -7,6 +7,12 @@ export function resetCalculator() {
   });
 }
 
+export function resetInput() {
+  dispatcher.dispatch({
+    type: "RESET_INPUT",
+  })
+}
+
 export function receiveInput(input) {
   dispatcher.dispatch({
     type: "RECEIVE_INPUT",
@@ -14,10 +20,8 @@ export function receiveInput(input) {
   });
 }
 
-export function calculateResult(input, todo) {
+export function calculateResult() {
   dispatcher.dispatch({
     type: "CALCULATE_RESULT",
-    input,
-    todo,
   });
 }
